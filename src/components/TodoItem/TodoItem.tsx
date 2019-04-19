@@ -1,23 +1,21 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import { Task } from '../../models';
+import * as React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
-    color: red;
+  text-decoration: ${(props: {isComplete: boolean}) => (props.isComplete ? "line-through" : "none")};
+  color: red;
 `;
 
-export interface TodoItemProps {
-    key: string;
-    isComplete: boolean;
-    content: string;
-};
+interface TodoItemProps {
+  key: string;
+  isComplete: boolean;
+  content: string;
+}
 
-export default class TodoItem extends React.Component{
-    render() {
-        const { isComplete, content } = this.props;
+export default class TodoItem extends React.Component<TodoItemProps, {}> {
+  render() {
+    const { isComplete, content } = this.props;
 
-        return (
-            <Wrapper>Todo Item 2</Wrapper>
-        )
-    }
+    return <Wrapper isComplete={isComplete}>{content}</Wrapper>;
+  }
 }

@@ -1,7 +1,6 @@
 import * as React from "react";
-import TodoItem from "../TodoItem/TodoItem";
+import TodoItem from "../TodoItem";
 import { Task } from "../../models";
-import { TodoItemProps } from '../TodoItem';
 
 const samples = [
   {
@@ -36,9 +35,7 @@ const samples = [
   }
 ];
 
-
-
-export default class TodoList extends React.Component<Task>{
+export default class TodoList extends React.Component {
   render() {
     return (
       <>
