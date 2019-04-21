@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TodoList from './components/TodoList';
-import TodoForm from './components/TodoAddForm/TodoAddForm';
+import TodoAddForm from './components/TodoAddForm/TodoAddForm';
 import { TodoStore, Todo } from './models/TodoStore';
 import DevTools from 'mobx-react-devtools';
 
@@ -45,13 +45,13 @@ samples.forEach(s => {
 console.log(todoStore.todos);
 
 export default class App extends React.Component {
-    render() {
-        return (
-            <>
-                <TodoForm store={ todoStore }/>
-                <TodoList store={ todoStore }/>
-                <DevTools />
-            </>
-        )
-    }
+  render() {
+    return (
+      <div>
+          <TodoAddForm store={ todoStore }/>
+          <TodoList store={ todoStore }/>
+          <DevTools />
+      </div>
+    )
+  }
 }

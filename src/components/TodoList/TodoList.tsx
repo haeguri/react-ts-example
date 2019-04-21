@@ -7,21 +7,21 @@ interface TodoListProps {
   store: TodoStore;
 }
 
-const generateKey = (id: string): string => {
-  console.log('todo-item-' + id);
-  return 'todo-item-' + id;
-}
+// const generateKey = (id: string): string => {
+//   console.log('todo-item-' + id);
+//   return 'todo-item-' + id;
+// }
 
 @observer
 export default class TodoList extends React.Component<TodoListProps> {
   render() {
     const todoStore = this.props.store;
     return (
-      <>
+      <ul>
         {todoStore.todos.map((item: Todo) => (
-          <TodoItem key={generateKey(item.id)} task={item.task} isComplete={item.isComplete}/>
+          <TodoItem key={item.id} task={item.task} isComplete={item.isComplete}/>
         ))}
-      </>
+      </ul>
     );
   }
 }
