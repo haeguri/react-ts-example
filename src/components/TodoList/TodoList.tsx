@@ -1,46 +1,25 @@
-import * as React from "react";
+import * as React from 'react';
+import { observer } from "mobx-react";
 import TodoItem from "../TodoItem";
-import { Task } from "../../models";
+import { Todo, TodoStore } from "../../models/TodoStore";
 
-const samples = [
-  {
-    id: "1",
-    content: "회의 하기",
-    isComplete: true
-  },
-  {
-    id: "2",
-    content: "메일 확인하기",
-    isComplete: false
-  },
-  {
-    id: "3",
-    content: "커피 마시기",
-    isComplete: true
-  },
-  {
-    id: "4",
-    content: "이슈 확인하기",
-    isComplete: true
-  },
-  {
-    id: "5",
-    content: "TypeScript 공부하기",
-    isComplete: true
-  },
-  {
-    id: "6",
-    content: "MobX 공부하기",
-    isComplete: false
-  }
-];
+interface TodoListProps {
+  store: TodoStore;
+}
 
-export default class TodoList extends React.Component {
+const generateKey = (id: string): string => {
+  console.log('todo-item-' + id);
+  return 'todo-item-' + id;
+}
+
+@observer
+export default class TodoList extends React.Component<TodoListProps> {
   render() {
+    const todoStore = this.props.store;
     return (
       <>
-        {samples.map(item => (
-          <TodoItem key={item.id} content={item.content} isComplete={item.isComplete}/>
+        {todoStore.todos.map((item: Todo) => (
+          <TodoItem key={generateKey(item.id)} task={item.task} isComplete={item.isComplete}/>
         ))}
       </>
     );

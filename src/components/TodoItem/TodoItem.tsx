@@ -1,21 +1,20 @@
 import * as React from "react";
 import styled from "styled-components";
+import { Todo } from "../../models/TodoStore";
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
   text-decoration: ${(props: {isComplete: boolean}) => (props.isComplete ? "line-through" : "none")};
   color: red;
 `;
 
-interface TodoItemProps {
+interface TodoItemProps extends Todo {
   key: string;
-  isComplete: boolean;
-  content: string;
 }
 
-export default class TodoItem extends React.Component<TodoItemProps, {}> {
+export default class TodoItem extends React.Component<TodoItemProps> {
   render() {
-    const { isComplete, content } = this.props;
+    const { isComplete, task } = this.props;
 
-    return <Wrapper isComplete={isComplete}>{content}</Wrapper>;
+    return <Wrapper isComplete={isComplete}>{task}</Wrapper>;
   }
 }
