@@ -1,8 +1,12 @@
 import * as React from 'react';
+import { configure } from 'mobx';
+import DevTools from 'mobx-react-devtools';
+
 import TodoList from './components/TodoList';
 import TodoAddForm from './components/TodoAddForm/TodoAddForm';
 import { TodoStore, Todo } from './models/TodoStore';
-import DevTools from 'mobx-react-devtools';
+
+configure({ enforceActions: true });
 
 const todoStore = new TodoStore();
 const samples: Todo[] = [
@@ -47,11 +51,11 @@ console.log(todoStore.todos);
 export default class App extends React.Component {
   render() {
     return (
-      <div>
-          <TodoAddForm store={ todoStore }/>
-          <TodoList store={ todoStore }/>
-          <DevTools />
-      </div>
+      <>
+        <TodoAddForm store={ todoStore }/>
+        <TodoList store={ todoStore }/>
+        <DevTools />
+      </>
     )
   }
 }
