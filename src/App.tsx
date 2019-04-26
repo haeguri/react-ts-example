@@ -4,49 +4,50 @@ import DevTools from 'mobx-react-devtools';
 
 import TodoList from './components/TodoList';
 import TodoAddForm from './components/TodoAddForm/TodoAddForm';
-import { TodoStore, Todo } from './models/TodoStore';
+import { Todo } from './models';
+import TodoStore from './TodoStore';
 
-configure({ enforceActions: true });
+configure({ enforceActions: "observed" });
 
 const todoStore = new TodoStore();
 const samples: Todo[] = [
   {
-    id: "1",
+    id: 1,
     task: "회의 하기",
     isComplete: true
   },
   {
-    id: "2",
+    id: 2,
     task: "메일 확인하기",
     isComplete: false
   },
   {
-    id: "3",
+    id: 3,
     task: "커피 마시기",
     isComplete: true
   },
   {
-    id: "4",
+    id: 4,
     task: "이슈 확인하기",
     isComplete: true
   },
   {
-    id: "5",
+    id: 5,
     task: "TypeScript 공부하기",
     isComplete: true
   },
   {
-    id: "6",
+    id: 6,
     task: "MobX 공부하기",
     isComplete: false
   }
 ];
 
 samples.forEach(s => {
-  todoStore.addTodo(s.task);
+  todoStore.add(s.task);
 });
 
-console.log(todoStore.todos);
+console.log(todoStore.todoList);
 
 export default class App extends React.Component {
   render() {

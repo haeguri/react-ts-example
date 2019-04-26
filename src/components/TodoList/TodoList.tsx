@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { observer } from "mobx-react";
 import TodoItem from "../TodoItem";
-import { Todo, TodoStore } from "../../models/TodoStore";
+import TodoStore from "../../TodoStore";
+import { Todo } from '../../models';
 
 interface TodoListProps {
   store: TodoStore;
@@ -18,8 +19,8 @@ export default class TodoList extends React.Component<TodoListProps> {
     const todoStore = this.props.store;
     return (
       <ul>
-        {todoStore.todos.map((item: Todo) => (
-          <TodoItem key={item.id} task={item.task} isComplete={item.isComplete}/>
+        {todoStore.todoList.items.map((item: Todo) => (
+          <TodoItem key={String(item.id)} task={item.task} isComplete={item.isComplete}/>
         ))}
       </ul>
     );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TodoStore } from "../../models/TodoStore";
+import TodoStore from "../../TodoStore";
 import { observer } from 'mobx-react';
 import { observable, action } from 'mobx';
 import Button from '../Button';
@@ -20,7 +20,7 @@ export default class TodoForm extends React.Component<TodoFormProps> {
 
   @action
   private handleOnTodoSave = () => {
-    this.props.store.addTodo(this.task);
+    this.props.store.add(this.task);
     this.task = '';
   }
 
