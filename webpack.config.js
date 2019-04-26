@@ -1,29 +1,46 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 module.exports = {
-    entry: "./src/index.tsx",
-    output: {
-        filename: "bundle.js",
-        path: __dirname + "/dist"
-    },
+  mode: "development",
 
-    devtool: "source-map",
+  entry: "./src/index.tsx",
 
-    devServer: {
-        contentBase: './'
-    },
+  output: {
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, 'dist')
+  },
 
-    resolve: {
-        extensions: [".ts", ".tsx", ".js", ".json"]
-    },
+  devtool: "source-map",
 
-    module: {
-        rules: [
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader"},
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
-        ]
-    },
+  devServer: {
+    contentBase: './dist'
+  },
 
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
-    }
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json"]
+  },
+
+  module: {
+    rules: [
+      { 
+        test: /\.tsx?$/,
+        use: "ts-loader"
+      },
+      { 
+        enforce: "pre", 
+        test: /\.js$/, 
+        loader: "source-map-loader" 
+      }
+    ]
+  },
+
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Development',
+      template: './index.html'
+    })
+  ]
 }
