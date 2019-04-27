@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { configure } from 'mobx';
+import { configure, toJS } from 'mobx';
 import DevTools from 'mobx-react-devtools';
 
 import TodoList from './components/TodoList';
@@ -44,10 +44,16 @@ const samples: Todo[] = [
 ];
 
 samples.forEach(s => {
-  todoStore.add(s.task);
+  todoStore.add(s.task, s.isComplete);
 });
 
-console.log(todoStore.todoList);
+// console.log('init todo', toJS(todoStore.todoList));
+
+// setInterval(() => {
+//   console.log('curr todo', toJS(todoStore.todoList).items.reduce((prev: number, curr: Todo) => {
+//     return prev + (curr.isComplete ? 1 : 0);
+//   }, 0));
+// }, 1000);
 
 export default class App extends React.Component {
   render() {

@@ -11,15 +11,16 @@ const Wrapper = styled.li`
 
 interface TodoItemProps extends Todo {
   key: string;
+  onClick: (id: number) => void;
 }
 
 export default class TodoItem extends React.Component<TodoItemProps> {
   render() {
-    const { isComplete, task } = this.props;
+    const { isComplete, task, onClick, id } = this.props;
 
     return (
       <Wrapper isComplete={isComplete}>
-        <CheckBox checked={true} />
+        <CheckBox checked={isComplete} onClick={() => onClick(id)} />
         <span>{task}</span>
       </Wrapper>
     );

@@ -17,12 +17,22 @@ const StyledUl = styled.ul`
 
 @observer
 export default class TodoList extends React.Component<TodoListProps> {
+  handleOnTodoCheck = (id: number) => {
+    this.props.store.toggleStatus(id);
+  }
+
   render() {
     const todoStore = this.props.store;
     return (
       <StyledUl>
         {todoStore.todoList.items.map((item: Todo) => (
-          <TodoItem key={String(item.id)} task={item.task} isComplete={item.isComplete}/>
+          <TodoItem 
+            key={String(item.id)}
+            id={item.id}
+            task={item.task}
+            isComplete={item.isComplete}
+            onClick={this.handleOnTodoCheck}
+          />
         ))}
       </StyledUl>
     );

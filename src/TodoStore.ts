@@ -1,5 +1,5 @@
 import { TodoList } from './models';
-import { observable } from 'mobx';
+import { action } from 'mobx';
 
 export default class TodoStore {
   public todoList: TodoList;
@@ -8,7 +8,12 @@ export default class TodoStore {
     this.todoList = new TodoList();
   }
 
-  public add(task: string): void {
-    this.todoList.add(task);
+  public add(task: string, isComplete: boolean = false): void {
+    this.todoList.add(task, isComplete);
+  }
+
+  @action
+  public toggleStatus(id: number) {
+    this.todoList.toggleStatus(id);
   }
 }

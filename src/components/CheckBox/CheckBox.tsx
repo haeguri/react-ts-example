@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 interface CheckBoxProps {
-  onClick?: (checked: boolean) => void;
+  onClick?: () => void;
   label?: string;
   checked: boolean;
 }
@@ -73,7 +73,11 @@ const CheckBox: React.FunctionComponent<CheckBoxProps> = (props) => {
 
   return (
     <WrapperLabel htmlFor={id}>{props.label}
-      <input type="checkbox" id={id} />
+      <input 
+        type="checkbox" 
+        id={id} 
+        defaultChecked={props.checked} 
+        onClick={props.onClick} />
       <span className="checkmark"></span>
     </WrapperLabel>
   )
