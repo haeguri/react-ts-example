@@ -5,7 +5,7 @@ interface ButtonProps {
 }
 
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
-  return (
+  return (   
     <button {...props} onClick={(e) => { props.onClick(e); e.preventDefault(); }}>{props.children}</button>
   );
 }
