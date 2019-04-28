@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 interface CheckBoxProps {
   onClick?: () => void;
+  id: string;
   label?: string;
   checked: boolean;
 }
 
-const WrapperLabel = styled.label`
+const Wrapper = styled.div`
   display: inline-block;
   position: relative;
   font-size: 16px;
@@ -68,19 +69,27 @@ const WrapperLabel = styled.label`
   }
 `
 
-const CheckBox: React.FunctionComponent<CheckBoxProps> = (props) => {
-  const id = String((new Date()).getTime());
+class CheckBox extends React.Component<CheckBoxProps> {
+  private id: string = String((new Date()).getTime());
 
-  return (
-    <WrapperLabel htmlFor={id}>{props.label}
+  render() {
+    const props = this.props;
+
+    return (
+      <Wrapper>
       <input 
         type="checkbox" 
-        id={id} 
+        id={this.id} 
         defaultChecked={props.checked} 
-        onClick={props.onClick} />
-      <span className="checkmark"></span>
-    </WrapperLabel>
-  )
+      />
+      <label 
+        htmlFor={this.id} 
+        className="checkmark" 
+        onClick={(e) => {props.onClick(); e.stopPropagation(); }}
+      >{props.label}</label>
+    </Wrapper>
+    )
+  }
 }
 
 export default CheckBox;

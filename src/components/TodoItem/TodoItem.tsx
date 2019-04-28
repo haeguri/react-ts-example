@@ -20,7 +20,7 @@ export default class TodoItem extends React.Component<TodoItemProps> {
 
     return (
       <Wrapper isComplete={isComplete}>
-        <CheckBox checked={isComplete} onClick={() => onClick(id)} />
+        <CheckBox id={String(id)} checked={isComplete} onClick={() => onClick(id)} />
         <span>{task}</span>
       </Wrapper>
     );
