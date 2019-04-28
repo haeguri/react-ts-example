@@ -69,27 +69,22 @@ const Wrapper = styled.div`
   }
 `
 
-class CheckBox extends React.Component<CheckBoxProps> {
-  private id: string = String((new Date()).getTime());
+const CheckBox: React.FunctionComponent<CheckBoxProps> = (props) => {
+  const { id, checked, label, onClick } = props;
 
-  render() {
-    const props = this.props;
-
-    return (
-      <Wrapper>
+  return (
+    <Wrapper>
       <input 
         type="checkbox" 
-        id={this.id} 
-        defaultChecked={props.checked} 
+        id={id} 
+        defaultChecked={checked} 
       />
       <label 
-        htmlFor={this.id} 
+        htmlFor={id} 
         className="checkmark" 
-        onClick={(e) => {props.onClick(); e.stopPropagation(); }}
-      >{props.label}</label>
+        onClick={(e) => {onClick();}}
+      >{label}</label>
     </Wrapper>
-    )
-  }
+  )
 }
-
 export default CheckBox;
